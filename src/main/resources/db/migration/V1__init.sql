@@ -13,6 +13,7 @@ create table books (
     title varchar(255),
     genre varchar(255),
     author_id bigint,
+    average_rating DECIMAL(3,1),
     foreign key (author_id) references authors (id)
 );
 
@@ -20,6 +21,16 @@ create table books_details (
     id bigserial primary key,
     book_id bigint,
     description varchar(255),
+    foreign key (book_id) references books (id)
+);
+
+create table reviews (
+    id bigserial primary key,
+    book_id bigint,
+    date datetime,
+    rating int,
+    text varchar(1000),
+    user_name varchar(255),
     foreign key (book_id) references books (id)
 );
 

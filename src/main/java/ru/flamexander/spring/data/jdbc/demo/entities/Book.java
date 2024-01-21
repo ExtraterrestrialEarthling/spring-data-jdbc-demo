@@ -5,6 +5,9 @@ import org.springframework.data.annotation.PersistenceCreator;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 @Table("BOOKS")
 public class Book {
     @Id
@@ -14,6 +17,7 @@ public class Book {
     private Genre genre;
     @MappedCollection(idColumn = "BOOK_ID")
     private BookDetails bookDetails;
+    private BigDecimal averageRating;
 
     public Long getId() {
         return id;
@@ -54,6 +58,15 @@ public class Book {
     public void setGenre(Genre genre) {
         this.genre = genre;
     }
+
+    public BigDecimal getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(BigDecimal averageRating) {
+        this.averageRating = averageRating;
+    }
+
 
     @PersistenceCreator
     public Book(Long id, String title, Long authorId, BookDetails bookDetails) {
